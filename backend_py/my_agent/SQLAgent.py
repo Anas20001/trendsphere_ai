@@ -54,9 +54,9 @@ The "noun_columns" field should contain only the columns that are relevant to th
             noun_columns = table_info['noun_columns']
             
             if noun_columns:
-                column_names = ', '.join(f"`{col}`" for col in noun_columns)
-                query = f"SELECT DISTINCT {column_names} FROM `{table_name}`"
-                results = self.db_manager.execute_query(state['uuid'], query)
+                column_names = ', '.join(f'"{col}"' for col in noun_columns)
+                query = f'SELECT DISTINCT {column_names} FROM "{table_name}"'
+                results = self.db_manager.execute_query(query)
                 for row in results:
                     unique_nouns.update(str(value) for value in row if value)
 
@@ -74,24 +74,53 @@ The "noun_columns" field should contain only the columns that are relevant to th
         schema = self.db_manager.get_schema(state['uuid'])
 
         prompt = ChatPromptTemplate.from_messages([
-            ("system", '''
-You are an AI assistant that generates SQL queries based on user questions, database schema, and unique nouns found in the relevant tables. Generate a valid SQL query to answer the user's question.
+            ("system",'''
+You are an AI assistant that generates PostgreSQL queries based on user questions, database schema, and unique nouns found in the relevant tables. Generate a valid SQL query to answer the user's question.
 
-If there is not enough information to write a SQL query, respond with "NOT_ENOUGH_INFO".
+If there is not enough information to write a SQL query, respond with "NOT_ENOUGH_INFO". For integer columns, do not use 'N/A' in where clause.
 
 Here are some examples:
 
 1. What is the top selling product?
-Answer: SELECT product_name, SUM(quantity) as total_quantity FROM sales WHERE product_name IS NOT NULL AND quantity IS NOT NULL AND product_name != "" AND quantity != "" AND product_name != "N/A" AND quantity != "N/A" GROUP BY product_name ORDER BY total_quantity DESC LIMIT 1
+Answer: SELECT product_name, SUM(quantity) as total_quantity 
+FROM sales 
+WHERE product_name IS NOT NULL 
+AND quantity IS NOT NULL 
+AND product_name != '' 
+AND quantity != '' 
+GROUP BY product_name 
+ORDER BY total_quantity DESC 
+LIMIT 1
 
 2. What is the total revenue for each product?
-Answer: SELECT \`product name\`, SUM(quantity * price) as total_revenue FROM sales WHERE \`product name\` IS NOT NULL AND quantity IS NOT NULL AND price IS NOT NULL AND \`product name\` != "" AND quantity != "" AND price != "" AND \`product name\` != "N/A" AND quantity != "N/A" AND price != "N/A" GROUP BY \`product name\`  ORDER BY total_revenue DESC
+Answer: SELECT "product name", SUM(quantity * price) as total_revenue 
+FROM sales 
+WHERE "product name" IS NOT NULL 
+AND quantity IS NOT NULL 
+AND price IS NOT NULL 
+AND "product name" != '' 
+AND quantity != '' 
+AND price != '' 
+GROUP BY "product name" 
+ORDER BY total_revenue DESC
 
 3. What is the market share of each product?
-Answer: SELECT \`product name\`, SUM(quantity) * 100.0 / (SELECT SUM(quantity) FROM sa  les) as market_share FROM sales WHERE \`product name\` IS NOT NULL AND quantity IS NOT NULL AND \`product name\` != "" AND quantity != "" AND \`product name\` != "N/A" AND quantity != "N/A" GROUP BY \`product name\`  ORDER BY market_share DESC
+Answer: SELECT "product name", 
+ROUND((SUM(quantity) * 100.0 / (SELECT SUM(quantity) FROM sales))::numeric, 2) as market_share 
+FROM sales 
+WHERE "product name" IS NOT NULL 
+AND quantity IS NOT NULL 
+AND "product name" != '' 
+AND quantity != '' 
+GROUP BY "product name" 
+ORDER BY market_share DESC
 
-4. Plot the distribution of income over time
-Answer: SELECT income, COUNT(*) as count FROM users WHERE income IS NOT NULL AND income != "" AND income != "N/A" GROUP BY income
+4. Plot the distribution of income
+Answer: SELECT income, COUNT(*) as count 
+FROM users 
+WHERE income IS NOT NULL 
+AND income != '' 
+GROUP BY income
 
 THE RESULTS SHOULD ONLY BE IN THE FOLLOWING FORMAT, SO MAKE SURE TO ONLY GIVE TWO OR THREE COLUMNS:
 [[x, y]]
@@ -99,8 +128,8 @@ or
 [[label, x, y]]
              
 For questions like "plot a distribution of the fares for men and women", count the frequency of each fare and plot it. The x axis should be the fare and the y axis should be the count of people who paid that fare.
-SKIP ALL ROWS WHERE ANY COLUMN IS NULL or "N/A" or "".
-Just give the query string. Do not format it. Make sure to use the correct spellings of nouns as provided in the unique nouns list. All the table and column names should be enclosed in backticks.
+SKIP ALL ROWS WHERE ANY COLUMN IS NULL or empty string ('').
+Just give the query string. Do not format it. Make sure to use the correct spellings of nouns as provided in the unique nouns list. Use double quotes for column/table names that contain spaces or special characters.
 '''),
             ("human", '''===Database schema:
 {schema}
@@ -117,7 +146,9 @@ Just give the query string. Do not format it. Make sure to use the correct spell
 Generate SQL query string'''),
         ])
 
-        response = self.llm_manager.invoke(prompt, schema=schema, question=question, parsed_question=parsed_question, unique_nouns=unique_nouns)
+        response = self.llm_manager.invoke(prompt, schema=schema, question=question, 
+                                           parsed_question=parsed_question, 
+                                           unique_nouns=unique_nouns)
         
         if response.strip() == "NOT_ENOUGH_INFO":
             return {"sql_query": "NOT_RELEVANT"}
@@ -135,8 +166,8 @@ Generate SQL query string'''),
 
         prompt = ChatPromptTemplate.from_messages([
             ("system", '''
-You are an AI assistant that validates and fixes SQL queries. Your task is to:
-1. Check if the SQL query is valid.
+You are an AI assistant that validates and fixes SQL queries to make sure it's combatiable with PostgreSQL. Your task is to:
+1. Check if the SQL query is valid from a PostgreSQL dialect.
 2. Ensure all table and column names are correctly spelled and exist in the schema. All the table and column names should be enclosed in backticks.
 3. If there are any issues, fix them and provide the corrected SQL query.
 4. If no issues are found, return the original query.
@@ -205,7 +236,10 @@ For example:
             return {"results": "NOT_RELEVANT"}
 
         try:
-            results = self.db_manager.execute_query(uuid, query)
+            print("I am here in execute_sql")
+            print(query)
+            results = self.db_manager.execute_query(query)
+            print("I am results: ",results)
             return {"results": results}
         except Exception as e:
             return {"error": str(e)}

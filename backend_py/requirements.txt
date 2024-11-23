@@ -2,3 +2,9 @@ langchain
 python-dotenv
 langgraph
 langchain-openai
+fastapi 
+uvicorn
+langchain_community
+pandas
+python-multipart
+toml

@@ -20,8 +20,8 @@ class WorkflowManager:
         workflow.add_node("validate_and_fix_sql", self.sql_agent.validate_and_fix_sql)
         workflow.add_node("execute_sql", self.sql_agent.execute_sql)
         workflow.add_node("format_results", self.sql_agent.format_results)
-        workflow.add_node("choose_visualization", self.sql_agent.choose_visualization)
-        workflow.add_node("format_data_for_visualization", self.data_formatter.format_data_for_visualization)
+        #workflow.add_node("choose_visualization", self.sql_agent.choose_visualization)
+        #workflow.add_node("format_data_for_visualization", self.data_formatter.format_data_for_visualization)
         
         # Define edges
         workflow.add_edge("parse_question", "get_unique_nouns")
@@ -29,10 +29,10 @@ class WorkflowManager:
         workflow.add_edge("generate_sql", "validate_and_fix_sql")
         workflow.add_edge("validate_and_fix_sql", "execute_sql")
         workflow.add_edge("execute_sql", "format_results")
-        workflow.add_edge("execute_sql", "choose_visualization")
-        workflow.add_edge("choose_visualization", "format_data_for_visualization")
-        workflow.add_edge("format_data_for_visualization", END)
-        workflow.add_edge("format_results", END)
+        workflow.add_edge("execute_sql", END)
+        # workflow.add_edge("choose_visualization", "format_data_for_visualization")
+        # workflow.add_edge("format_data_for_visualization", END)
+        # workflow.add_edge("format_results", END)
         workflow.set_entry_point("parse_question")
 
         return workflow
@@ -45,8 +45,8 @@ class WorkflowManager:
         app = self.create_workflow().compile()
         result = app.invoke({"question": question, "uuid": uuid})
         return {
-            "answer": result['answer'],
-            "visualization": result['visualization'],
-            "visualization_reason": result['visualization_reason'],
-            "formatted_data_for_visualization": result['formatted_data_for_visualization']
+            "answer": result['answer']
+            # "visualization": result['visualization'],
+            # "visualization_reason": result['visualization_reason'],
+            # "formatted_data_for_visualization": result['formatted_data_for_visualization']
         }
