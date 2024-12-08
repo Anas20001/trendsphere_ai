@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: product_pairs_frequency
+    description: Analyzes product combinations that are frequently purchased together
+    columns:
+      - name: branch_id
+        description: Unique identifier for the branch
+        tests:
+          - not_null
+          - relationships:
+              to: ref('branches')
+              field: id
+      - name: product_1
+        description: Name of the first product in the pair
+        tests:
+          - not_null
+      - name: product_2
+        description: Name of the second product in the pair
+        tests:
+          - not_null
+      - name: pair_frequency
+        description: Number of times these products were purchased together
+      - name: pair_percentage
+        description: Percentage of orders containing this product pair
+
+  - name: customer_segmentation
+    description: Customer segmentation based on purchase behavior and value
+    columns:
+      - name: customer_id
+        description: Unique identifier for the customer
+        tests:
+          - not_null
+          - unique
+      - name: total_orders
+        description: Total number of orders placed by the customer
+      - name: total_spent
+        description: Total amount spent by the customer
+      - name: avg_order_value
+        description: Average order value for the customer
+      - name: customer_lifetime_days
+        description: Number of days between first and last order
+      - name: visited_branches
+        description: Number of unique branches visited
+      - name: segment
+        description: Customer segment (VIP, Regular, New)
+        tests:
+          - accepted_values:
+              values: ['VIP', 'Regular', 'New']
+
+  - name: branch_level_insights
+    description: Daily branch performance metrics with trending analysis
+    columns:
+      - name: branch_id
+        description: Unique identifier for the branch
+        tests:
+          - not_null
+          - relationships:
+              to: ref('branches')
+              field: id
+      - name: business_date
+        description: Date of the metrics
+        tests:
+          - not_null
+      - name: total_orders
+        description: Total number of orders for the day
+      - name: unique_customers
+        description: Number of unique customers served
+      - name: total_revenue
+        description: Total revenue for the day
+      - name: total_profit
+        description: Total profit for the day
+      - name: revenue_7day_avg
+        description: 7-day moving average of revenue
+      - name: revenue_growth_pct
+        description: Day-over-day revenue growth percentage

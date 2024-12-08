@@ -1,0 +1,11 @@
+trendsphere_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: mysql5
+      server: 49.12.15.11
+      port: 43554 
+      username: analyst_user
+      password: ApVTE35dompCUeZ9dc9Q2o
+      driver: MySQL ODBC 8.0 ANSI Driver
+

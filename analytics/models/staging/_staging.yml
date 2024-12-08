@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_sales
+    description: Cleaned and standardized sales data
+    columns:
+      - name: sale_id
+        description: Unique identifier for the sale
+        tests:
+          - unique
+          - not_null
+      - name: branch_id
+        description: Branch where the sale occurred
+        tests:
+          - not_null
+          - relationships:
+              to: ref('branches')
+              field: id
+      - name: customer_id
+        description: Customer who made the purchase
+        tests:
+          - not_null
+      - name: net_with_tax
+        description: Sale amount including tax
+      - name: net_quantity
+        description: Number of items sold
+      - name: profit
+        description: Profit from the sale 
