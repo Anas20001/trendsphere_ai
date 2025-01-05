@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: int_daily_sales
+    description: Daily sales metrics
+    columns:
+      - name: branch_id
+        description: ID of the branch
+      - name: date
+        description: Date of the metrics
+      - name: num_orders
+        description: Number of orders for the day
+      - name: num_customers
+        description: Number of unique customers
+      - name: total_sales
+        description: Total sales amount
+      - name: avg_order_value
+        description: Average order value
+
+  - name: int_branch_performance
+    description: Monthly branch performance metrics
+    columns:
+      - name: branch_id
+        description: ID of the branch
+      - name: month
+        description: Month of the metrics
+      - name: monthly_sales
+        description: Total sales for the month
+      - name: monthly_orders
+        description: Total orders for the month
+      - name: monthly_customers
+        description: Total unique customers for the month
+      - name: avg_order_value
+        description: Average order value
+      - name: revenue_per_customer
+        description: Average revenue per customer
+
+  - name: int_product_performance
+    description: Product performance metrics
+    columns:
+      - name: branch_id
+        description: ID of the branch
+      - name: product_id
+        description: ID of the product
+      - name: product_name
+        description: Name of the product
+      - name: price
+        description: Current price of the product
+      - name: total_quantity_sold
+        description: Total quantity sold
+      - name: total_revenue
+        description: Total revenue generated
+      - name: number_of_orders
+        description: Number of orders containing this product
+
+  - name: int_customer_lifetime_value
+    description: Customer lifetime value metrics
+    columns:
+      - name: customer_id
+        description: ID of the customer
+      - name: total_orders
+        description: Total number of orders
+      - name: total_spent
+        description: Total amount spent
+      - name: avg_order_value
+        description: Average order value
+      - name: first_purchase
+        description: Date of first purchase
+      - name: last_purchase
+        description: Date of last purchase
+      - name: active_months
+        description: Number of months customer has been active
+      - name: monthly_value
+        description: Average monthly value
+      - name: days_since_last_purchase
+        description: Days since last purchase 

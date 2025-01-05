@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: tenantapi-app-1734289077
+    tables:
+      - name: sales
+      - name: orders
+      - name: products
+      - name: branches

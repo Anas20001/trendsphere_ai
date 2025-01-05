@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: int_daily_branch_metrics
+    description: Daily branch performance metrics
+    columns:
+      - name: branch_id
+        description: Branch identifier
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_branches')
+              field: branch_id
+      - name: date
+        description: Business date
+        tests:
+          - not_null
+      - name: total_sales
+        description: Total sales amount
+      - name: total_orders
+        description: Total number of orders
+
+  - name: int_monthly_branch_metrics
+    description: Monthly branch performance metrics
+    columns:
+      - name: branch_id
+        description: Branch identifier
+        tests:
+          - not_null
+      - name: month
+        description: Month of metrics
+        tests:
+          - not_null
+      - name: monthly_sales
+        description: Total monthly sales
+      - name: monthly_orders
+        description: Total monthly orders
+
+  - name: int_customer_lifetime_value
+    description: Customer lifetime value calculations
+    columns:
+      - name: customer_id
+        description: Customer identifier
+        tests:
+          - not_null
+          - unique
+      - name: lifetime_value
+        description: Total customer lifetime value
+      - name: first_purchase_date
+        description: Date of first purchase
+      - name: last_purchase_date
+        description: Date of last purchase
+
+  - name: int_product_performance
+    description: Product performance metrics
+    columns:
+      - name: product_id
+        description: Product identifier
+        tests:
+          - not_null
+          - unique
+      - name: total_sales
+        description: Total sales for product
+      - name: total_quantity
+        description: Total quantity sold 

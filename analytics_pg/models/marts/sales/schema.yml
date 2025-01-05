@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: sales_by_branch
+    description: Daily sales metrics aggregated by branch
+    columns:
+      - name: branch_name
+        description: Name of the branch
+      - name: city
+        description: City where branch is located
+      - name: state
+        description: State where branch is located
+      - name: country
+        description: Country where branch is located
+      - name: date
+        description: Date of the sales metrics
+      - name: num_orders
+        description: Number of orders for the day
+      - name: num_customers
+        description: Number of unique customers for the day
+      - name: total_sales
+        description: Total sales amount for the day
+      - name: avg_order_value
+        description: Average order value for the day
+      - name: sales_growth_pct
+        description: Percentage growth in sales compared to previous day
+
+  - name: fct_sales_trends
+    description: Time-based sales trends for different periods
+    columns:
+      - name: time_range
+        description: Period of aggregation (daily/weekly/monthly/yearly)
+      - name: time_bucket
+        description: Timestamp bucket for the aggregation
+      - name: sales_amount
+        description: Total sales amount for the period
+      - name: num_orders
+        description: Number of orders in the period 

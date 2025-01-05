@@ -1,0 +1,15 @@
+trendsphere_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      database: postgres
+      schema: public
+      user: postgres.jzmqbvxaeelgfecpbbzb
+      host: aws-0-eu-central-1.pooler.supabase.com
+      password: wrdjAceNP0DXE1LM
+      port: 5432
+      threads: 1
+
+      
+  

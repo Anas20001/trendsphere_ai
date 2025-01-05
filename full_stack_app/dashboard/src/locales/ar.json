@@ -1,0 +1,94 @@
+{
+  "common": {
+    "fileUpload": {
+      "title": "رفع الملفات",
+      "dropzone": {
+        "title": "اسحب وأفلت الملفات هنا",
+        "subtitle": "أو انقر للاختيار",
+        "requirements": "الصيغ المدعومة: CSV, XLSX, XLS (الحد الأقصى 10MB)"
+      },
+      "processing": {
+        "uploading": "جاري الرفع...",
+        "processing": "جاري المعالجة...",
+        "waiting": "قد يستغرق هذا بضع دقائق"
+      },
+      "preview": {
+        "title": "معاينة البيانات",
+        "showing": "عرض {{start}} إلى {{end}} من {{total}} صف",
+        "noData": "لا توجد بيانات للعرض",
+        "validate": "التحقق من البيانات",
+        "process": "معالجة وحفظ"
+      },
+      "validation": {
+        "errors": "تم العثور على {{count}} مشكلة",
+        "success": "البيانات صالحة"
+      },
+      "actions": {
+        "delete": "حذف",
+        "download": "تحميل",
+        "edit": "تعديل",
+        "previous": "السابق",
+        "next": "التالي"
+      }
+    },
+    "appName": "تريند سفير",
+    "language": {
+      "switch": "تغيير اللغة",
+      "current": "العربية",
+      "en": "الإنجليزية",
+      "ar": "العربية"
+    },
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "success": "تم بنجاح",
+    "actions": {
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "confirm": "تأكيد",
+      "back": "رجوع"
+    }
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "upload": "رفع البيانات",
+    "analytics": "التحليلات",
+    "performance": "الأداء",
+    "customers": "العملاء",
+    "products": "المنتجات",
+    "settings": "الإعدادات",
+    "help": "المساعدة والدعم",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج"
+  },
+  "errors": {
+    "general": "حدث خطأ ما",
+    "network": "خطأ في الاتصال بالشبكة",
+    "unauthorized": "غير مصرح لك بالوصول"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "welcome": "مرحباً بعودتك! إليك ما يحدث اليوم.",
+    "metrics": {
+      "sales": "إجمالي المبيعات",
+      "revenue": "الإيرادات",
+      "customers": "العملاء",
+      "growth": "النمو"
+    },
+    "insights": {
+      "title": "رؤى الأعمال",
+      "performance": "الأداء",
+      "customers": "العملاء",
+      "revenue": "الإيرادات"
+    },
+    "productAnalytics": {
+      "title": "تحليلات المنتجات",
+      "noData": "لا توجد بيانات متاحة"
+    },
+    "recentTransactions": {
+      "title": "المعاملات الأخيرة",
+      "noTransactions": "لا توجد معاملات حديثة"
+    }
+  }
+}

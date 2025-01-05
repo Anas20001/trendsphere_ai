@@ -1,0 +1,30 @@
+[project]
+name = "backend-py"
+version = "0.1.0"
+description = "trensdphere data playground"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pydantic-ai[logfire]>=0.0.10",
+    "langchain",
+    "python-dotenv",
+    "langgraph",
+    "langchain-openai",
+    "fastapi",
+    "uvicorn",
+    "langchain-community",
+    "pandas",
+    "python-multipart",
+    "toml",
+    "ipykernel>=6.29.5",
+    "pymysql>=1.1.1",
+    "pydantic-ai-slim>=0.0.10",
+    "pydantic-settings>=2.6.1",
+    "psycopg2-binary>=2.9.10",
+    "dbt-core>=1.7.19",
+    "dbt-mysql>=1.7.0",
+    "dbt-postgres>=1.7.19",
+    "sqlalchemy>=2.0.36",
+    "pygments>=2.18.0",
+    "supabase>=2.10.0",
+]

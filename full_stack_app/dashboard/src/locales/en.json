@@ -1,0 +1,94 @@
+{
+  "common": {
+    "fileUpload": {
+      "title": "File Upload",
+      "dropzone": {
+        "title": "Drag & drop files here",
+        "subtitle": "or click to browse",
+        "requirements": "Supported formats: CSV, XLSX, XLS (max 10MB)"
+      },
+      "processing": {
+        "uploading": "Uploading...",
+        "processing": "Processing...",
+        "waiting": "This may take a few minutes"
+      },
+      "preview": {
+        "title": "Data Preview",
+        "showing": "Showing {{start}} to {{end}} of {{total}} rows",
+        "noData": "No data to display",
+        "validate": "Validate Data",
+        "process": "Process & Save"
+      },
+      "validation": {
+        "errors": "{{count}} issues found",
+        "success": "Data is valid"
+      },
+      "actions": {
+        "delete": "Delete",
+        "download": "Download",
+        "edit": "Edit",
+        "previous": "Previous",
+        "next": "Next"
+      }
+    },
+    "appName": "TrendSphere",
+    "language": {
+      "switch": "Switch language",
+      "current": "English",
+      "en": "English",
+      "ar": "Arabic"
+    },
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirm": "Confirm",
+      "back": "Back"
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "upload": "Upload Data",
+    "analytics": "Analytics",
+    "performance": "Performance",
+    "customers": "Customers",
+    "products": "Products",
+    "settings": "Settings",
+    "help": "Help & Support",
+    "profile": "Profile",
+    "logout": "Sign Out"
+  },
+  "errors": {
+    "general": "Something went wrong",
+    "network": "Network connection error",
+    "unauthorized": "Unauthorized access"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back! Here's what's happening today.",
+    "metrics": {
+      "sales": "Total Sales",
+      "revenue": "Revenue",
+      "customers": "Customers",
+      "growth": "Growth"
+    },
+    "insights": {
+      "title": "Business Insights",
+      "performance": "Performance",
+      "customers": "Customers",
+      "revenue": "Revenue"
+    },
+    "productAnalytics": {
+      "title": "Product Analytics",
+      "noData": "No data available"
+    },
+    "recentTransactions": {
+      "title": "Recent Transactions",
+      "noTransactions": "No recent transactions"
+    }
+  }
+}

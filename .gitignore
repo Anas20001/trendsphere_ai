@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# UV specific
+.uv/
+uv.lock
+
+# Project specific
+logs/
+*.ipynb_checkpoints
+
+# env files 
+.env

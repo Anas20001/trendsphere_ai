@@ -1,0 +1,68 @@
+# version: 2
+
+# exposures:
+#   - name: business_dashboard
+#     type: dashboard
+#     maturity: high
+#     description: >
+#       Main business intelligence dashboard tracking real-time sales, branch performance,
+#       and customer metrics. Updates hourly with rolling 24-hour view.
+    
+#     depends_on:
+#       - ref('fct_dashboard_metrics')
+#       - ref('fct_recent_transactions')
+#       - ref('fct_branch_performance')
+#       - ref('int_daily_branch_metrics')
+#       - ref('sales_by_branch')
+    
+#     owner:
+#       name: Analytics Team
+
+#   - name: daily_sales_report
+#     type: analysis
+#     maturity: high
+#     description: >
+#       Daily sales performance report with branch-level breakdowns, customer segments,
+#       and growth metrics. Includes 7-day rolling averages and YoY comparisons.
+    
+#     depends_on:
+#       - ref('int_daily_sales')
+#       - ref('int_daily_branch_metrics')
+#       - ref('int_monthly_branch_metrics')
+#       - ref('int_branch_performance')
+#       - ref('dim_customers')
+    
+#     owner:
+#       name: BI Team
+
+#   - name: product_analytics
+#     type: ml
+#     maturity: medium
+#     description: >
+#       Product recommendation engine analyzing bundle patterns, customer segments,
+#       and product performance metrics to drive cross-sell opportunities.
+    
+#     depends_on:
+#       - ref('int_product_performance')
+#       - ref('fct_product_analytics')
+#       - ref('fct_product_bundles')
+#       - ref('int_customer_lifetime_value')
+    
+#     owner:
+#       name: Data Science Team
+
+#   - name: customer_segmentation
+#     type: analysis
+#     maturity: high
+#     description: >
+#       Customer segmentation analysis using RFM metrics, lifetime value calculations,
+#       and branch loyalty patterns to identify VIP and at-risk customers.
+    
+#     depends_on:
+#       - ref('dim_customers')
+#       - ref('int_customer_lifetime_value')
+#       - ref('fct_recent_transactions')
+    
+#     owner:
+#       name: Customer Analytics Team
+

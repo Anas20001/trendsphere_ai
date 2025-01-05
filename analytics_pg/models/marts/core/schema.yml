@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: Core fact table for orders with customer details
+    columns:
+      - name: order_sk
+        description: Surrogate key for the order
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: Natural key for the order
+      - name: customer_id
+        description: ID of the customer who placed the order
+      - name: customer_name
+        description: Name of the customer
+      - name: order_total
+        description: Total amount of the order
+      - name: num_items
+        description: Number of unique items in the order
+      - name: total_quantity
+        description: Total quantity of all items in the order
+
+  - name: fct_dashboard_metrics
+    description: Real-time metrics for dashboard display
+    columns:
+      - name: metric_date
+        description: Date of the metrics
+      - name: total_sales
+        description: Total sales amount
+      - name: total_customers
+        description: Total number of customers
+      - name: sales_growth_pct
+        description: Percentage growth in sales compared to previous period
+      - name: customer_growth_pct
+        description: Percentage growth in customers compared to previous period
+
+  - name: fct_recent_transactions
+    description: Recent transactions for real-time display
+    columns:
+      - name: order_id
+        description: ID of the order
+      - name: order_date
+        description: Date and time of the order
+      - name: order_total
+        description: Total amount of the order
+      - name: customer_id
+        description: ID of the customer
+      - name: customer_name
+        description: Name of the customer
+      - name: items
+        description: JSON array of items in the order 
