@@ -1,4 +1,4 @@
-trendsphere_analytics:
+Analytics:
   target: dev
   outputs:
     dev:
@@ -7,5 +7,6 @@ trendsphere_analytics:
       port: 43554 
       username: analyst_user
       password: ApVTE35dompCUeZ9dc9Q2o
+      schema: tenantapi-app-1734289077
       driver: MySQL ODBC 8.0 ANSI Driver
 

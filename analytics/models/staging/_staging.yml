@@ -14,8 +14,8 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('branches')
-              field: id
+              to: ref('stg_branches')
+              field: branch_id
       - name: customer_id
         description: Customer who made the purchase
         tests:
@@ -25,4 +25,47 @@ models:
       - name: net_quantity
         description: Number of items sold
       - name: profit
-        description: Profit from the sale 
+        description: Profit from the sale
+
+  - name: stg_products
+    description: Cleaned product data
+    columns:
+      - name: product_id
+        description: Unique identifier for the product
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: Name of the product
+      - name: category
+        description: Product category
+
+  - name: stg_branches
+    description: Branch information
+    columns:
+      - name: branch_id
+        description: Unique identifier for the branch
+        tests:
+          - unique
+          - not_null
+      - name: branch_name
+        description: Name of the branch
+      - name: location
+        description: Branch location
+
+  - name: stg_orders
+    description: Order information
+    columns:
+      - name: order_id
+        description: Unique identifier for the order
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Customer who placed the order
+        tests:
+          - not_null
+      - name: order_date
+        description: Date of the order
+        tests:
+          - not_null 

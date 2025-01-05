@@ -1,1 +1,28 @@
- 
+# version: 2
+
+# sources:
+#   - name: raw
+#     database: trendsphere_analytics
+#     tables:
+#       - name: sales
+#         description: Raw sales transactions
+#         columns:
+#           - name: id
+#             tests:
+#               - unique
+#               - not_null
+#           - name: branch_id
+#             tests:
+#               - not_null
+#           - name: net_with_tax
+#             tests:
+#               - not_null
+
+#       - name: branches
+#         description: Store branches information
+        
+#       - name: products
+#         description: Product catalog
+        
+#       - name: orders
+#         description: Order details

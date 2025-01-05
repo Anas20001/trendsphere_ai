@@ -1,8 +1,8 @@
-name: 'trendsphere_analytics'
+name: 'Analytics'
 version: '1.0.0'
 config-version: 2
 
-profile: 'trendsphere_analytics'
+profile: 'Analytics'
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -17,19 +17,24 @@ clean-targets:
     - "dbt_packages"
 
 models:
-  trendsphere_analytics:
-    marts:
-      +materialized: table
-      +schema: marts
-      +tags: ['marts']
+  Analytics:
+    +database: tenantapi-app-1734289077
+    +schema: analytics
     staging:
       +materialized: view
-      +schema: staging
       +tags: ['staging']
+
+    intermediate:
+      +materialized: table
+      +tags: ['intermediate']
+
+    marts:
+      +materialized: table
+      +tags: ['marts']
+      fct_recent_transactions:
+        +materialized: incremental
+        +unique_key: order_id
+        +tags: ['transactions', 'real_time']
 
 vars:
   'dbt_date:time_zone': 'UTC'
-
-seeds:
-  trendsphere_analytics:
-    +schema: raw
